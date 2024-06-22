@@ -11,8 +11,11 @@ public class Enemy : MonoBehaviour
     public Transform down_Collision;
     public Transform up_Collision;
     public LayerMask PlayerLayerMask;
-
+    public LayerMask GroundLayerMask;
+    public bool willDestroy;
     public bool moveLeft;
+
+    private bool canMove = true;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -32,16 +35,28 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        CheckCollision();
-        CheckPlayer();
+        EnemyMove();
+    }
 
-        if (moveLeft)
+    private void EnemyMove()
+    {
+        if (canMove)
         {
-            rb.velocity = new Vector2(-speed, rb.velocity.y);
+            CheckCollision();
+            CheckPlayer();
+
+            if (moveLeft)
+            {
+                rb.velocity = new Vector2(-speed, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(speed, rb.velocity.y);
+            }
         }
         else
         {
-            rb.velocity = new Vector2(speed, rb.velocity.y);
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
 
@@ -51,22 +66,49 @@ public class Enemy : MonoBehaviour
         {
             ChangeDirection();
         }
+
+        if (Physics2D.Raycast(left_Collision.position, Vector2.left, 0.1f, GroundLayerMask))
+        {
+            ChangeDirection();
+        }
+
+        //if (Physics2D.Raycast(left_Collision.position, Vector2.right, 0.1f, GroundLayerMask))
+        //{
+        //    ChangeDirection();
+        //}
     }
 
     void CheckPlayer()
     {
         if (Physics2D.Raycast(left_Collision.position, Vector2.left, 0.1f, PlayerLayerMask))
         {
-            DamagePlayer();
+            Debug.Log("Enemy: Detact player on left");
+            //DamagePlayer();
         }
 
         if (Physics2D.Raycast(right_Collision.position, Vector2.right, 0.1f, PlayerLayerMask))
         {
-            DamagePlayer();
+            Debug.Log("Enemy: Detact player on right");
+            //DamagePlayer();
         }
 
-        if (Physics2D.Raycast(up_Collision.position, Vector2.up, 0.1f, PlayerLayerMask))
+        //if (Physics2D.Raycast(up_Collision.position, Vector2.up, 0.1f, PlayerLayerMask))
+        //{
+        //    Debug.Log("Enemy: Detact player on top");
+
+        //    //Stun
+        //    canMove = false;
+        //    anim.Play("Enemy Stun Animation");
+        //    Die();
+        //}
+
+        if (Physics2D.OverlapCircle(up_Collision.position,0.3f,PlayerLayerMask))
         {
+            Debug.Log("Enemy: Detact player on top");
+
+            //Stun
+            canMove = false;
+            anim.Play("Enemy Stun Animation");
             Die();
         }
     }
@@ -100,6 +142,9 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        Destroy(this.gameObject);
+        if (willDestroy == true)
+        {
+            Destroy(this.gameObject, 0.2f);
+        }
     }
 }

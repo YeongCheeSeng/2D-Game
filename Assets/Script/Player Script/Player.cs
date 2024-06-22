@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -13,9 +14,15 @@ public class Player : MonoBehaviour
 
     public Transform groundCheckPosition;
     public LayerMask groundLayer;
+    public LayerMask enemyLayer;
     private bool isGrounded;
     private bool jumped;
+
     public int curHealth;
+    public int TotalScore;
+
+    public TMP_Text UIScore;
+    public AudioSource CoinPickUp;
 
     private void Awake()
     {
@@ -35,8 +42,10 @@ public class Player : MonoBehaviour
         CheckIfGrounded();
         PlayerJump();
         HealthCheck();
+        UIShowScore();
 
-        Debug.Log("Current Health: " + curHealth);
+        //Debug.Log("Current Health: " + curHealth);
+        Debug.Log("Current Score: " + TotalScore);
     }
 
     private void FixedUpdate()
@@ -52,14 +61,14 @@ public class Player : MonoBehaviour
         if (h > 0)
         {
             myBody.velocity = new Vector2(speed, myBody.velocity.y);
-            ChangeDirection(3);
+            ChangeDirection(1);
         }
         else if (h < 0)
         {
             myBody.velocity = new Vector2(-speed, myBody.velocity.y);
-            ChangeDirection(-3);
+            ChangeDirection(-1);
         }
-        else
+        else if (h == 0)
         {
             myBody.velocity = new Vector2(0, myBody.velocity.y);
         }
@@ -95,14 +104,17 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Coin")
-            Debug.Log("Coin Detacted");
+        {
+            CoinPickUp.Play();          
+        }
     }
 
     void CheckIfGrounded()
     {
-        isGrounded = Physics2D.Raycast(groundCheckPosition.position, Vector2.down, 0.1f, groundLayer);
+        //isGrounded = Physics2D.Raycast(groundCheckPosition.position, Vector2.down, 0.1f, groundLayer);
+        //Debug.DrawRay(groundCheckPosition.position, Vector3.down, Color.red, 1);
 
-        Debug.DrawRay(groundCheckPosition.position, Vector3.down, Color.red, 1);
+        isGrounded = Physics2D.OverlapCircle(groundCheckPosition.position, 0.3f, groundLayer);
 
         //Debug.Log("Ground Detacted");
 
@@ -135,6 +147,14 @@ public class Player : MonoBehaviour
             curHealth = 0;
             Destroy(this.gameObject);
             return;
+        }
+    }
+
+    void UIShowScore()
+    {
+        if (UIScore != null)
+        {
+            UIScore.text = "X" + TotalScore;
         }
     }
 }

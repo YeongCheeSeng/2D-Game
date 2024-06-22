@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9056331052750271971}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7905836803083568719}
   - component: {fileID: 3586073164064528632}
   - component: {fileID: 3325346851764689186}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy(Snail)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 18.47, y: 2.08, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3264544460021800353}
@@ -81,7 +81,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1786550770351368971}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2b6f64c1ecd43714c9d1a891c1719c12, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -165,7 +165,11 @@ MonoBehaviour:
   PlayerLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  moveLeft: 0
+  GroundLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  willDestroy: 0
+  moveLeft: 1
 --- !u!95 &3586073164064528632
 Animator:
   serializedVersion: 5
@@ -248,7 +252,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 228965190117324984}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DownCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4934191825575378909}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3264544460021800353}
   - component: {fileID: 2471099357392268560}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +398,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2599167781974428639}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UpCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
