@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine;
+using Unity.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -24,7 +25,11 @@ public class Player : MonoBehaviour
 
     public TMP_Text UIScore;
     public AudioSource CoinPickUp;
+    public AudioSource Jump;
+    public AudioSource Die;    
     public string SceneToLoadAfterDead;
+
+    public float DieDelay;
 
     // Start is called before the first frame update
     void Start()
@@ -105,7 +110,7 @@ public class Player : MonoBehaviour
     {
         if (collision.tag == "Coin")
         {
-            CoinPickUp.Play();          
+            CoinPickUp.Play();
         }
     }
 
@@ -114,7 +119,7 @@ public class Player : MonoBehaviour
         //isGrounded = Physics2D.Raycast(groundCheckPosition.position, Vector2.down, 0.1f, groundLayer);
         //Debug.DrawRay(groundCheckPosition.position, Vector3.down, Color.red, 1);
 
-        isGrounded = Physics2D.OverlapCircle(groundCheckPosition.position, 0.3f, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheckPosition.position, 0.2f, groundLayer);
 
         //Debug.Log("Ground Detacted");
 
@@ -133,6 +138,7 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 jumped = true;
+                Jump.Play();
                 myBody.velocity = new Vector2(myBody.velocity.x, jump);
                 //Debug.Log("Jump");
                 anim.SetBool("Jump",true);
@@ -145,11 +151,19 @@ public class Player : MonoBehaviour
         if (curHealth <= 0)
         {
             curHealth = 0;
+            Die.Play();
             anim.Play("Player Die Animation");
-            SceneManager.LoadScene(SceneToLoadAfterDead);
+            StartCoroutine(DelaySceneLoad());
+            //SceneManager.LoadScene(SceneToLoadAfterDead);
+
             //Destroy(this.gameObject);
-            return;
         }
+    }
+
+    IEnumerator DelaySceneLoad()
+    {
+        yield return new WaitForSeconds(DieDelay);
+        SceneManager.LoadScene(SceneToLoadAfterDead);
     }
 
     void UIShowScore()

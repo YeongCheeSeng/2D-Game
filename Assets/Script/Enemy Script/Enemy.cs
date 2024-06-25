@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -21,10 +22,13 @@ public class Enemy : MonoBehaviour
     private Animator anim;
     private Player player;
 
+    public AudioSource audioSource;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -67,10 +71,10 @@ public class Enemy : MonoBehaviour
             ChangeDirection();
         }
 
-        if (Physics2D.Raycast(left_Collision.position, Vector2.left, 0.1f, GroundLayerMask))
-        {
-            ChangeDirection();
-        }
+        //if (Physics2D.Raycast(left_Collision.position, Vector2.left, 0.1f, GroundLayerMask))
+        //{
+        //    ChangeDirection();
+        //}
 
         //if (Physics2D.Raycast(left_Collision.position, Vector2.right, 0.1f, GroundLayerMask))
         //{
@@ -142,6 +146,12 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
+
+
         if (willDestroy == true)
         {
             Destroy(this.gameObject, 0.2f);
