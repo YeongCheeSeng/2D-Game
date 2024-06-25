@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine;
 
@@ -23,17 +24,16 @@ public class Player : MonoBehaviour
 
     public TMP_Text UIScore;
     public AudioSource CoinPickUp;
-
-    private void Awake()
-    {
-        myBody = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-    }
+    public string SceneToLoadAfterDead;
 
     // Start is called before the first frame update
     void Start()
     {
+        myBody = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+
         curHealth = maxHealth;
+        TotalScore = 0;
     }
 
     // Update is called once per frame
@@ -145,7 +145,9 @@ public class Player : MonoBehaviour
         if (curHealth <= 0)
         {
             curHealth = 0;
-            Destroy(this.gameObject);
+            anim.Play("Player Die Animation");
+            SceneManager.LoadScene(SceneToLoadAfterDead);
+            //Destroy(this.gameObject);
             return;
         }
     }

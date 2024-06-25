@@ -83,13 +83,13 @@ public class Enemy : MonoBehaviour
         if (Physics2D.Raycast(left_Collision.position, Vector2.left, 0.1f, PlayerLayerMask))
         {
             Debug.Log("Enemy: Detact player on left");
-            //DamagePlayer();
+            DamagePlayer();
         }
 
         if (Physics2D.Raycast(right_Collision.position, Vector2.right, 0.1f, PlayerLayerMask))
         {
             Debug.Log("Enemy: Detact player on right");
-            //DamagePlayer();
+            DamagePlayer();
         }
 
         //if (Physics2D.Raycast(up_Collision.position, Vector2.up, 0.1f, PlayerLayerMask))
