@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine;
 using Unity.Collections;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -24,12 +25,15 @@ public class Player : MonoBehaviour
     public int TotalScore;
 
     public TMP_Text UIScore;
-    public AudioSource CoinPickUp;
-    public AudioSource Jump;
-    public AudioSource Die;    
+    public AudioSource CoinPickUpSound;
+    public AudioSource JumpSound;
+    public AudioSource DieSound;    
     public string SceneToLoadAfterDead;
 
     public float DieDelay;
+    private bool canMove;
+
+    public GameObject backgroundMusic;
 
     // Start is called before the first frame update
     void Start()
@@ -39,18 +43,19 @@ public class Player : MonoBehaviour
 
         curHealth = maxHealth;
         TotalScore = 0;
+        canMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        HealthCheck();
         CheckIfGrounded();
         PlayerJump();
-        HealthCheck();
         UIShowScore();
 
         //Debug.Log("Current Health: " + curHealth);
-        Debug.Log("Current Score: " + TotalScore);
+        //Debug.Log("Current Score: " + TotalScore);
     }
 
     private void FixedUpdate()
@@ -60,32 +65,35 @@ public class Player : MonoBehaviour
 
     private void PlayerMovement()
     {
-        //player move left and right
-        float h = Input.GetAxisRaw("Horizontal");
-
-        if (h > 0)
+        if (canMove)
         {
-            myBody.velocity = new Vector2(speed, myBody.velocity.y);
-            ChangeDirection(1);
-        }
-        else if (h < 0)
-        {
-            myBody.velocity = new Vector2(-speed, myBody.velocity.y);
-            ChangeDirection(-1);
-        }
-        else if (h == 0)
-        {
-            myBody.velocity = new Vector2(0, myBody.velocity.y);
-        }
+            //player move left and right
+            float h = Input.GetAxisRaw("Horizontal");
 
-        anim.SetInteger("Speed",Mathf.Abs((int)myBody.velocity.x));
+            if (h > 0)
+            {
+                myBody.velocity = new Vector2(speed, myBody.velocity.y);
+                ChangeDirection(1);
+            }
+            else if (h < 0)
+            {
+                myBody.velocity = new Vector2(-speed, myBody.velocity.y);
+                ChangeDirection(-1);
+            }
+            else if (h == 0)
+            {
+                myBody.velocity = new Vector2(0, myBody.velocity.y);
+            }
 
-        ////player jump
-        //if (Input.GetKey(KeyCode.Space))
-        //{
-        //    myBody.velocity = new Vector2(myBody.velocity.x, jump);
-        //    Debug.Log("Jump");
-        //}
+            anim.SetInteger("Speed",Mathf.Abs((int)myBody.velocity.x));
+
+            ////player jump
+            //if (Input.GetKey(KeyCode.Space))
+            //{
+            //    myBody.velocity = new Vector2(myBody.velocity.x, jump);
+            //    Debug.Log("Jump");
+            //}          
+        }
     }
 
     private void ChangeDirection(int direction)
@@ -110,7 +118,7 @@ public class Player : MonoBehaviour
     {
         if (collision.tag == "Coin")
         {
-            CoinPickUp.Play();
+            CoinPickUpSound.Play();
         }
     }
 
@@ -131,14 +139,14 @@ public class Player : MonoBehaviour
 
     void PlayerJump()
     {
-        if (isGrounded) 
+        if (isGrounded && canMove) 
         {
             anim.SetBool("Jump",false);
 
             if (Input.GetKey(KeyCode.Space))
             {
                 jumped = true;
-                Jump.Play();
+                JumpSound.Play();
                 myBody.velocity = new Vector2(myBody.velocity.x, jump);
                 //Debug.Log("Jump");
                 anim.SetBool("Jump",true);
@@ -151,12 +159,13 @@ public class Player : MonoBehaviour
         if (curHealth <= 0)
         {
             curHealth = 0;
-            Die.Play();
-            anim.Play("Player Die Animation");
-            StartCoroutine(DelaySceneLoad());
-            //SceneManager.LoadScene(SceneToLoadAfterDead);
+            canMove = false;
 
-            //Destroy(this.gameObject);
+            backgroundMusic.SetActive(false);
+            DieSound.Play();
+            anim.Play("Player Die Animation");
+
+            StartCoroutine(DelaySceneLoad());            
         }
     }
 

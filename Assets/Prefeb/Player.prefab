@@ -598,6 +598,7 @@ MonoBehaviour:
   Jump: {fileID: 7395070503082136857}
   Die: {fileID: 7929089251347567274}
   SceneToLoadAfterDead: GamePlay
+  DieDelay: 0.5
 --- !u!1 &7701676404076204992
 GameObject:
   m_ObjectHideFlags: 0

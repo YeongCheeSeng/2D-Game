@@ -21,10 +21,12 @@ public class ColZone : MonoBehaviour
         {
             if (WillKill)  
             { 
-                player.curHealth = 0; 
+                player.curHealth = 0;
+                return;
             }
 
-            SceneManager.LoadScene(SceneToLoadAfterCol);
+            if (!WillKill)
+                SceneManager.LoadScene(SceneToLoadAfterCol);           
         }
         else
         {
