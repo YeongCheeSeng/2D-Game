@@ -27,13 +27,14 @@ public class Player : MonoBehaviour
     public TMP_Text UIScore;
     public AudioSource CoinPickUpSound;
     public AudioSource JumpSound;
-    public AudioSource DieSound;    
+    public AudioSource DieSound;  
     public string SceneToLoadAfterDead;
 
     public float DieDelay;
     private bool canMove;
 
     public GameObject backgroundMusic;
+    private bool PlayOnce = true;
 
     // Start is called before the first frame update
     void Start()
@@ -161,9 +162,13 @@ public class Player : MonoBehaviour
             curHealth = 0;
             canMove = false;
 
-            backgroundMusic.SetActive(false);
-            DieSound.Play();
-            anim.Play("Player Die Animation");
+            if (PlayOnce == true)
+            {
+                backgroundMusic.SetActive(false);
+                DieSound.Play();
+                anim.Play("Player Die Animation");
+                PlayOnce = false;
+            }
 
             StartCoroutine(DelaySceneLoad());            
         }

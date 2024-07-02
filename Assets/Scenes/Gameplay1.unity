@@ -2037,49 +2037,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1071181405}
     - target: {fileID: 7557210981844939885, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: DieDelay
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7557210981844939885, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: DieSound
-      value: 
-      objectReference: {fileID: 1381348025}
-    - target: {fileID: 7557210981844939885, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: JumpSound
-      value: 
-      objectReference: {fileID: 1381348026}
-    - target: {fileID: 7557210981844939885, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: CoinPickUpSound
-      value: 
-      objectReference: {fileID: 1381348024}
-    - target: {fileID: 7557210981844939885, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
       propertyPath: backgroundMusic
       value: 
       objectReference: {fileID: 1259780265}
-    - target: {fileID: 7557210981844939885, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: SceneToLoadAfterDead
-      value: GamePlay1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
---- !u!82 &1381348024 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3362234781855810545, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-  m_PrefabInstance: {fileID: 1381348023}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1381348025 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 7929089251347567274, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-  m_PrefabInstance: {fileID: 1381348023}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1381348026 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 7395070503082136857, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-  m_PrefabInstance: {fileID: 1381348023}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1482236604
 PrefabInstance:
   m_ObjectHideFlags: 0

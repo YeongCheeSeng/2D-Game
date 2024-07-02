@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!82 &107401016 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3362234781855810545, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-  m_PrefabInstance: {fileID: 7576521941956110013}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &116102011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -648,16 +643,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e346c1fbc968ad4fa76d9462ecb991d, type: 3}
---- !u!82 &1497542720 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 7929089251347567274, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-  m_PrefabInstance: {fileID: 7576521941956110013}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1549727519 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 7395070503082136857, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-  m_PrefabInstance: {fileID: 7576521941956110013}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1562864324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -945,6 +930,10 @@ PrefabInstance:
     - target: {fileID: 6642212342696721432, guid: d062241e7a6f4c24a8902a0f9783968e, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454887379272053711, guid: d062241e7a6f4c24a8902a0f9783968e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -644.5901
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1580,69 +1569,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7395070503082136857, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: Priority
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 7395070503082136857, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: BypassEffects
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7395070503082136857, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: BypassReverbZones
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7395070503082136857, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: BypassListenerEffects
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7489988821456871642, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7557210981844939885, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: Die
-      value: 
-      objectReference: {fileID: 1497542720}
-    - target: {fileID: 7557210981844939885, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: source
-      value: 
-      objectReference: {fileID: 1497542720}
-    - target: {fileID: 7557210981844939885, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
       propertyPath: UIScore
       value: 
       objectReference: {fileID: 543452344}
     - target: {fileID: 7557210981844939885, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: DieDelay
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7557210981844939885, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: DieSound
-      value: 
-      objectReference: {fileID: 1497542720}
-    - target: {fileID: 7557210981844939885, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: JumpSound
-      value: 
-      objectReference: {fileID: 1549727519}
-    - target: {fileID: 7557210981844939885, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: CoinPickUpSound
-      value: 
-      objectReference: {fileID: 107401016}
-    - target: {fileID: 7557210981844939885, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
       propertyPath: backgroundMusic
       value: 
       objectReference: {fileID: 189556199}
-    - target: {fileID: 7929089251347567274, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: Priority
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 7929089251347567274, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 355fded65cb4fff49bc2b1f9e25936a0, type: 3}
-    - target: {fileID: 7929089251347567274, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
+    - target: {fileID: 7557210981844939885, guid: f5ae959bc4c944740b2a88a627ca2e12, type: 3}
+      propertyPath: SceneToLoadAfterDead
+      value: GamePlay
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
